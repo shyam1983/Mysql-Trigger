@@ -1,0 +1,6 @@
+CREATE DATABASE monitorcpu;
+
+CREATE TABLE cpu (id int,processor varchar(255),ram varchar(255),cost varchar(255));
+
+CREATE TRIGGER addition BEFORE INSERT ON cpu FOR EACH ROW SET NEW.totalcost := (SELECT
+NEW.cost + monitor.cost FROM monitor WHERE monitor.id = NEW.id
